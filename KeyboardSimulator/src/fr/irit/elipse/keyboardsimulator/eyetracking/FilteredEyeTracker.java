@@ -11,11 +11,10 @@ public class FilteredEyeTracker implements EyeTracker, ActionListener {
     private float xMean, yMean;
     private final int size; // size de quoi ?
     private TobiiGUI gui;
-
     private final Timer timer; // temps de vue sur une touche j'imagine
-
+    
     public FilteredEyeTracker(int bufferSize) {
-
+    	
         xMean = yMean = 0;
         size = bufferSize;
 
