@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 
 public class TobiiGUI extends JPanel {
     public static final int GAZE_SIZE = 50;
-    private final LoggerXML logger;
+    private final LoggerXML logger; // enregistreur
 
     private JFrame window;
     private int eyeX, eyeY;
@@ -29,6 +29,7 @@ public class TobiiGUI extends JPanel {
     public void onNewEyePosition(float x, float y) {
         if (logger != null) logger.logEyePosition(x, y);
 
+        // à revoir
         // Convert from values between 0 and 1 to pixels on the screen
         Dimension dims = Toolkit.getDefaultToolkit().getScreenSize();
         eyeX = (int) (x * dims.getWidth());
@@ -36,7 +37,7 @@ public class TobiiGUI extends JPanel {
 
         // Adjust reference point to the content pane
         Rectangle bounds = window.getBounds();
-        Insets insets = window.getInsets();
+        Insets insets = window.getInsets(); // c'est quoi inset ?
 
         eyeX -= bounds.x + insets.left;
         eyeY -= bounds.y + insets.top;

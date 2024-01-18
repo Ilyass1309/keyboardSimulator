@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 
 public class FilteredEyeTracker implements EyeTracker, ActionListener {
     private float xMean, yMean;
-    private final int size;
+    private final int size; // size de quoi ?
     private TobiiGUI gui;
 
-    private final Timer timer;
+    private final Timer timer; // temps de vue sur une touche j'imagine
 
     public FilteredEyeTracker(int bufferSize) {
 
@@ -22,7 +22,7 @@ public class FilteredEyeTracker implements EyeTracker, ActionListener {
         timer = new Timer(20, this);
         timer.start();
     }
-
+    // ajuste la précision des coordonnées ? 
     private float approxRollingAverage (float avg, float new_sample) {
         avg -= avg / size;
         avg += new_sample / size;

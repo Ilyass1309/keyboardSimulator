@@ -1,4 +1,4 @@
-package fr.irit.elipse.keyboardsimulator.interfaces;
+ package fr.irit.elipse.keyboardsimulator.interfaces;
 
 import fr.irit.elipse.keyboardsimulator.GUIKeyboard;
 

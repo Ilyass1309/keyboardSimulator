@@ -9,7 +9,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 public class KeyboardSimulator extends Observable implements Observer{
-	public static final int DEFAULT_ACTIVATION_TIME = 80;
+	public static final int DEFAULT_ACTIVATION_TIME = 1000;
 	Corpus corpus;
 	Keyboard keyboard;
 	Mot mot;

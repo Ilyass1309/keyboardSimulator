@@ -160,7 +160,7 @@ public class Keyboard extends JComponent implements Observer {
 		// "PS_RC_clavier"
 		loadXMLFile("resources/keyboards/CL4_DL_N.xml");
 	}
-	//fin éthode de tets 
+	//fin méthode de test
 
 	public void loadXMLFile(String fileName) {
 		layout = new Block(Block.RACINE, activationTime);
