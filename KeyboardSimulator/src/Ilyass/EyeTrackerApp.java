@@ -10,31 +10,35 @@ import javax.swing.Timer;
 
 import tobii.Tobii;
 
-public class EyeTrackerApp implements ActionListener{
+public class EyeTrackerApp extends JFrame implements ActionListener{
 	private final Timer timer;
-	private float circleX, circleY;
-	private Frame frame;
+	private int circleX, circleY;
+	private Panel panel;
 	
 	public EyeTrackerApp() {
 		
-		frame = new Frame();
+		JFrame frame = new JFrame();
 		circleX = circleY = 0;
+		panel = new Panel();
+		frame.getContentPane().add(panel);
+	    frame.setVisible(true);
 		timer = new Timer(20, this);
 		timer.start();
+		
 	}
 	
 	@Override
     public void actionPerformed(ActionEvent e) {
         float[] position = Tobii.gazePosition();
-        circleX = position[0]; 
-        circleY = position[1];
-        frame.paint(circleX, circleY);
+        circleX = (int) position[0]; 
+        circleY = (int) position[1];
+        panel.onNewEyePosition(circleX, circleY);
         
     }
 	
 	public static void main(String[] args) {
 		
-		EyeTrackerApp eyeTracker = new EyeTrackerApp();
+		EyeTrackerApp eyeTracker = new EyeTrackerApp(); 
 	}
 	
-}
+} 

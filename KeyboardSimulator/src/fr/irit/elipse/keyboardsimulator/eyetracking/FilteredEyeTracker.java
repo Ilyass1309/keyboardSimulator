@@ -19,7 +19,7 @@ public class FilteredEyeTracker implements EyeTracker, ActionListener {
         size = bufferSize;
 
         timer = new Timer(20, this);
-        timer.start();
+        timer.start(); 
     }
     // ajuste la précision des coordonnées ? 
     private float approxRollingAverage (float avg, float new_sample) {
