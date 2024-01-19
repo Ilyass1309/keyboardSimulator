@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 
 public class Panel extends JPanel{
 	
-	private final int GAZE_SIZE = 50;
-	private Graphics g;
-	private int circleX, circleY;
+	private static final int GAZE_SIZE = 50;
+	private int circleX;
+	private int circleY;
 	
 	public Panel() {
 	    circleX = circleY = 0;
@@ -24,9 +24,9 @@ public class Panel extends JPanel{
 		circleY = y;
 	}
 	
-	public void onNewEyePosition(float x, float y) {
-		setterCircleX((int) x);
-		setterCircleY((int) y);
+	public void onNewEyePosition(int x, int y) {
+		setterCircleX(x);
+		setterCircleY(y);
 		this.repaint();
 	}
 	
