@@ -1,8 +1,8 @@
 package Ilyass;
 
-
+import java.awt.Dimension;
 import java.awt.Robot;
-
+import java.awt.Toolkit;
 import java.awt.event.*;
 
 import javax.swing.*;
@@ -18,12 +18,9 @@ public class ButtonTest implements ActionListener{
 		JPanel panel = new JPanel();
 		frame.add(panel);
 		
-		JButton bA = new JButton();
-		
-		
+		JButton bA = new JButton();	
 		panel.add(bA);
 
-		
 		frame.setTitle("Test Button");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,600);
@@ -47,11 +44,16 @@ public class ButtonTest implements ActionListener{
 		
 		try {
 			float[] position = Tobii.gazePosition();
-			int x = (int) position[0];
-			int y = (int) position[1];
+			float x = (float) position[0];
+			float y = (float) position[1];
+			
+			// Conversion des valeurs en float entre 0 et 1 en pixels sur l'écran
+			Dimension dims = Toolkit.getDefaultToolkit().getScreenSize();
+	        int eyeX = (int) (x * dims.getWidth());
+	        int eyeY = (int) (y * dims.getHeight());
 			Robot r = new Robot();
 			
-			r.mouseMove(x, y);
+			r.mouseMove(eyeX, eyeY);
 				
 		} catch (Exception e2) {
 			e.setSource(e2);
