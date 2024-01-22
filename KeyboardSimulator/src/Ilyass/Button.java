@@ -1,4 +1,6 @@
 package Ilyass;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.Robot;
 import java.awt.TextField;
 import java.awt.event.*;
@@ -8,13 +10,13 @@ import javax.swing.*;
 import tobii.Tobii;
 
 public class Button implements ActionListener{
-	private final Timer timer;
-//	private static TextField x, y, x1, y1;
+//	private final Timer timer;
+	private static TextField x_end, y_end;
 	
 	public Button() {
 		
-		timer = new Timer(20, this);
-		timer.start();
+//		timer = new Timer(20, this);
+//		timer.start();
 	}
 	
 	public static void main(String[] args) {
@@ -23,6 +25,9 @@ public class Button implements ActionListener{
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		frame.add(panel);
+		
+		x_end = new TextField(7);
+		y_end = new TextField(7);
 		
 		JButton bA = new JButton();
 //		JButton bB = new JButton();
@@ -40,28 +45,42 @@ public class Button implements ActionListener{
 		frame.setVisible(true);
 		
 		bA.addActionListener(button);
-		
-//		x = new TextField(7);
-//		y = new TextField(7);
-//		
-//		x1 = new TextField(7);
-//		y1 = new TextField(7);
+
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		try {
-			float[] position = Tobii.gazePosition();
+			Point p = MouseInfo.getPointerInfo().getLocation();
+			int x_start = p.x;
+			int y_start = p.y;
+//			float[] position = Tobii.gazePosition();
 			Robot r = new Robot();
-//			int xi, yi, xi1, yi1;
 			
-//			xi = Integer.parseInt(x.getText());
-//            yi = Integer.parseInt(y.getText());
-//            xi1 = Integer.parseInt(x1.getText());
-//            yi1 = Integer.parseInt(y1.getText());
+            int i = x_start;
+            int j = y_start;
             
-            r.mouseMove( (int) position[0], (int) position[1]);
+            int xi1 = Integer.parseInt(x_end.getText());
+            int yi1 = Integer.parseInt(y_end.getText());
+            
+			while (i != xi1 || j != yi1) {
+                // move the mouse to the other point
+                r.mouseMove(i, j);
+ 
+                if (i < xi1)
+                    i++;
+                if (j < yi1)
+                    j++;
+ 
+                if (i > xi1)
+                    i--;
+                if (j > yi1)
+                    j--;
+ 
+                // wait
+                Thread.sleep(30);
+            }
 			
 		} catch (Exception e2) {
 			e.setSource(e2);
