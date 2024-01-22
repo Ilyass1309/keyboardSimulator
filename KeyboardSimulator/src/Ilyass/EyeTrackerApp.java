@@ -48,10 +48,7 @@ public class EyeTrackerApp extends JFrame implements ActionListener{
 	@Override
     public void actionPerformed(ActionEvent e) {
         float[] position = Tobii.gazePosition();
-        System.out.println("x = " + position[0] + " y = " + position[1]);
-//        setterCircleX((int)position[0]);
-//        setterCircleY((int) position[1]);
-//        panel.onNewEyePosition(circleX, circleY);
+        panel.onNewEyePosition(position[0], position[1]);
         
     }
 	
