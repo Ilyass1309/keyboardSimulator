@@ -11,8 +11,13 @@ import tobii.Tobii;
 
 public class ButtonTest implements ActionListener{
 	private final Timer timer;
+	private MoyenneMobile moyenneX;
+	private MoyenneMobile moyenneY;
 	
 	public ButtonTest() {
+		
+		moyenneX = new MoyenneMobile(8);
+		moyenneY = new MoyenneMobile(8);
 		
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
@@ -44,8 +49,8 @@ public class ButtonTest implements ActionListener{
 		
 		try {
 			float[] position = Tobii.gazePosition();
-			float x = (float) position[0];
-			float y = (float) position[1];
+			float x = moyenneX.filtre(position[0]);
+			float y = moyenneY.filtre(position[1]);
 			
 			// Conversion des valeurs en float entre 0 et 1 en pixels sur l'écran
 			Dimension dims = Toolkit.getDefaultToolkit().getScreenSize();
